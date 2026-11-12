@@ -20,7 +20,7 @@ export const works: Work[] = unique.map((p, i) => {
     ...p,
     // Stable URL (does not change when works are added); Japanese-only titles use "work-<n>"
     slug: p.slug ?? (ascii(p.title) || `work-${i + 1}`),
-    year: p.time.match(/\d{4}/)?.[0] ?? "",
+    year: p.year ?? p.time.match(/\d{4}/)?.[0] ?? "",
   };
 });
 
@@ -44,6 +44,8 @@ const tagJa: Record<string, string> = {
   "Team Work": "チーム制作",
   "Product Design": "プロダクトデザイン",
   "Graphic Design": "グラフィックデザイン",
+  "Landing Page Design": "ランディングページデザイン",
+  "Mobile App Design": "モバイルアプリデザイン",
   "Icon Design": "アイコンデザイン",
   Typography: "タイポグラフィ",
 };

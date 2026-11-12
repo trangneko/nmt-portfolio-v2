@@ -41,6 +41,7 @@ export interface Project {
     description: string;
     role?: string;
     time: string;
+    year?: string; // overrides the year taken from `time`
     image: string;
     url?: string;
     skills: string[];

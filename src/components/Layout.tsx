@@ -72,7 +72,9 @@ export default function Layout() {
   // Keep the <html lang> attribute in sync with the chosen language
   useEffect(() => {
     document.documentElement.lang = i18n.resolvedLanguage === "jp" ? "ja" : "en";
-  }, [i18n.resolvedLanguage]);
+    // Same for the meta description (also shown in search results)
+    document.querySelector('meta[name="description"]')?.setAttribute("content", t("metaDescription"));
+  }, [i18n.resolvedLanguage, t]);
 
   // The landing page ends with the yellow Contact section, so its footer is yellow too
   const footerAccent = isHome;

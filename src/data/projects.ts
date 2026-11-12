@@ -1,6 +1,8 @@
 import type { Project } from "../types/Project";
 import { airweaveCaseStudy } from "./caseStudies/airweave";
 import { fleetCaseStudy } from "./caseStudies/fleet";
+import { warehouseCaseStudy } from "./caseStudies/warehouse";
+import { elsaCaseStudy } from "./caseStudies/elsa";
 
 export const devProjects: Project[] = [
   {
@@ -63,6 +65,25 @@ export const webDesigns: Project[] = [
     caseStudy: fleetCaseStudy,
   },
   {
+    slug: "ai-warehouse-verification-app",
+    tags: ["Client work", "Team Work", "UI/UX", "Mobile App Design"],
+    title: "AI-Powered Warehouse Order & Inventory Verification App",
+    ja: {
+      title: "AI搭載 倉庫の注文・在庫照合アプリ",
+      description:
+        "倉庫業務のためのiOSアプリです。マルチモーダルAI（Gemini）で、現物の書籍を注文書と送り状に照らして自動で検品します。現場のスピードに合わせて、1件ずつの逐次解析と、複数注文の一括解析に対応し、例外は人が確認して処理できます。クライアント名はNDAのため非公開です。",
+      role: "UI/UXデザイナー（エンドツーエンドのフロー設計、iOS UIデザイン、日本語UXライティング、インタラクティブなプロトタイプ）",
+    },
+    categories: ["UI/UX"],
+    description:
+      "An iOS app for Japanese warehouse operations. It uses multimodal AI (Gemini) to check physical books against order forms and shipping labels, with sequential and batch scanning and human-in-the-loop handling of exceptions. Client name is hidden under NDA.",
+    role: "UI/UX Designer (end-to-end flows, iOS interface design, Japanese UX copywriting, interactive prototyping)",
+    time: "4/2026 - 6/2026",
+    image: "/images/works/warehouse/cover.jpg",
+    skills: ["Figma", "FigJam", "Lovable", "Gemini API", "Mobile App Design (iOS)", "Japanese UX Copywriting"],
+    caseStudy: warehouseCaseStudy,
+  },
+  {
     slug: "airweave-social-ad-creatives",
     tags: ["Client work", "Team Work", "Graphic Design"],
     title: "Airweave Social Ad Creatives",
@@ -81,6 +102,36 @@ export const webDesigns: Project[] = [
     image: "/images/works/airweave/cover.jpg",
     skills: ["Figma", "Meta Ads", "Video direction", "AI image generation", "Brand guideline"],
     caseStudy: airweaveCaseStudy,
+  },
+  {
+    slug: "elsa-web-redesign",
+    tags: ["Client work", "Team Work", "Landing Page Design"],
+    title: "ELSA Web Ecosystem: Conversion Redesign & UX Copywriting",
+    ja: {
+      title: "ELSA Webサイトの刷新：コンバージョン改善とUXコピーライティング",
+      description:
+        "別のベンダーからの引き継ぎで始まった、ELSA（AI英語スピーキングコーチ）のWebサイトのリデザインです。5人のチームでデザインシステムをゼロからつくり、約3か月で約20ページを納品しました。アセスメントテスト、ELSA Shop、Speech Analyzerのページを紹介します。",
+      role: "UI/UXデザイナー、コンバージョン向けコピーライター",
+    },
+    categories: ["Landing Page Design"],
+    description:
+      "A redesign and conversion copywriting project for the ELSA website, taken over after an earlier vendor was too slow. Our team of five built a new design system from scratch and delivered about 20 pages in 3 months, including the Assessment Test, ELSA Shop and Speech Analyzer pages.",
+    role: "UI/UX Designer & Conversion Copywriter",
+    time: "10/2025 - 12/2025",
+    image: "/images/works/elsa/cover.jpg",
+    url: "https://elsaspeak.com/en",
+    skills: [
+      "Figma",
+      "UI/UX Design",
+      "Conversion Copywriting",
+      "Information Architecture",
+      "Responsive Web Design",
+      "Visual Storytelling",
+      "Wireframing",
+      "Micro-Copy",
+      "Stakeholder Collaboration",
+    ],
+    caseStudy: elsaCaseStudy,
   },
 
   {
