@@ -1,22 +1,32 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { Box, Button, Drawer, IconButton, List, ListItemButton, ListItemText, Typography } from "@mui/material";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useTranslation } from "react-i18next";
 import { brand } from "../theme/theme";
 
-const left = [
-  { to: "/", key: "navHome" },
-  { to: "/works", key: "navWorks" },
+// Pages with their own route navigate there; others are sections of the landing page
+// ("/#id") and the Layout scrolls to them smoothly.
+export interface NavItem {
+  key: string;
+  labelKey: string;
+  to: string;
+}
+
+export const navLeft: NavItem[] = [
+  { key: "home", labelKey: "navHome", to: "/" },
+  { key: "about", labelKey: "navAbout", to: "/about" },
+  { key: "services", labelKey: "navServices", to: "/#services" },
 ];
-const right = [
-  { to: "/about", key: "navAbout" },
-  { to: "/contact", key: "navContact" },
+export const navRight: NavItem[] = [
+  { key: "works", labelKey: "navWorks", to: "/works" },
+  { key: "contact", labelKey: "navContact", to: "/#contact" },
 ];
 
 interface NavbarProps {
-  // On the orange Contact page the bar blends into the background
+  activeKey: string;
+  // Over the yellow Contact section the bar blends into the background
   onAccent?: boolean;
 }
 
@@ -27,18 +37,32 @@ const linkSx = (onAccent: boolean) => ({
   py: 0.75,
   fontSize: "0.85rem",
   minWidth: 0,
+  transition: "background-color .3s, color .3s",
   "&.active": { bgcolor: brand.jetBlack, color: onAccent ? "#FFFFFF" : brand.goldenOrange },
   "&:hover": { bgcolor: "rgba(20,54,66,0.12)" },
   "&.active:hover": { bgcolor: brand.jetBlack },
 });
 
-export default function Navbar({ onAccent = false }: NavbarProps) {
+export default function Navbar({ activeKey, onAccent = false }: NavbarProps) {
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const all = [...left, ...right];
+  const all = [...navLeft, ...navRight];
+
+  const renderLink = (item: NavItem) => (
+    <Button
+      key={item.key}
+      component={RouterLink}
+      to={item.to}
+      className={activeKey === item.key ? "active" : undefined}
+      aria-current={activeKey === item.key ? "page" : undefined}
+      sx={linkSx(onAccent)}
+    >
+      {t(item.labelKey)}
+    </Button>
+  );
 
   return (
-    <Box component="header" sx={{ position: "sticky", top: 0, zIndex: 10, pt: { xs: 1.5, md: 2.5 } }}>
+    <>
       <Box
         component="nav"
         aria-label={t("mainNav")}
@@ -51,19 +75,15 @@ export default function Navbar({ onAccent = false }: NavbarProps) {
           px: { xs: 2, md: 1.5 },
           py: 0.75,
           // Orange bar needs a contrast ring against the Jet Black page
-          border: onAccent ? "none" : `2px solid ${brand.goldenOrange}`,
+          border: `2px solid ${brand.goldenOrange}`,
+          borderColor: onAccent ? "transparent" : brand.goldenOrange,
+          transition: "background-color .5s, border-color .5s",
         }}
       >
-        <Box sx={{ display: { xs: "none", md: "flex" }, flex: 1, gap: 0.5 }}>
-          {left.map((l) => (
-            <Button key={l.to} component={NavLink} to={l.to} end={l.to === "/"} sx={linkSx(onAccent)}>
-              {t(l.key)}
-            </Button>
-          ))}
-        </Box>
+        <Box sx={{ display: { xs: "none", md: "flex" }, flex: 1, gap: 0.5 }}>{navLeft.map(renderLink)}</Box>
 
         <Typography
-          component={NavLink}
+          component={RouterLink}
           to="/"
           variant="h6"
           sx={{ color: brand.jetBlack, textDecoration: "none", letterSpacing: "0.04em", fontWeight: 700 }}
@@ -72,11 +92,7 @@ export default function Navbar({ onAccent = false }: NavbarProps) {
         </Typography>
 
         <Box sx={{ display: { xs: "none", md: "flex" }, flex: 1, justifyContent: "flex-end", gap: 0.5 }}>
-          {right.map((l) => (
-            <Button key={l.to} component={NavLink} to={l.to} sx={linkSx(onAccent)}>
-              {t(l.key)}
-            </Button>
-          ))}
+          {navRight.map(renderLink)}
         </Box>
 
         <IconButton
@@ -94,21 +110,21 @@ export default function Navbar({ onAccent = false }: NavbarProps) {
             <CloseRoundedIcon />
           </IconButton>
           <List>
-            {all.map((l) => (
+            {all.map((item) => (
               <ListItemButton
-                key={l.to}
-                component={NavLink}
-                to={l.to}
-                end={l.to === "/"}
+                key={item.key}
+                component={RouterLink}
+                to={item.to}
                 onClick={() => setOpen(false)}
-                sx={{ borderRadius: 999, "&.active": { bgcolor: "primary.main", color: "primary.contrastText" } }}
+                selected={activeKey === item.key}
+                sx={{ borderRadius: 999, "&.Mui-selected": { bgcolor: "primary.main", color: "primary.contrastText" } }}
               >
-                <ListItemText primary={t(l.key)} />
+                <ListItemText primary={t(item.labelKey)} />
               </ListItemButton>
             ))}
           </List>
         </Box>
       </Drawer>
-    </Box>
+    </>
   );
 }

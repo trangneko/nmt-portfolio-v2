@@ -1,7 +1,10 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Chip, Container, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import SectionHeading from "../components/SectionHeading";
 import { formatPeriod, useLang } from "../hooks/useLang";
+import { certificates, skills, tools } from "../data/resume";
+import Reveal from "../components/Reveal";
+import { useReveal } from "../hooks/useReveal";
 
 interface Entry {
   date: string;
@@ -11,14 +14,15 @@ interface Entry {
 }
 
 // Two-column row: date on the left, details on the right
-function Row({ entry }: { entry: Entry }) {
+function Row({ entry, compact = false }: { entry: Entry; compact?: boolean }) {
   return (
+    <Reveal>
     <Box
       sx={{
         display: "grid",
         gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
         gap: { xs: 1, md: 6 },
-        py: 4,
+        py: compact ? 2.5 : 4,
         borderBottom: "1px solid",
         borderColor: "divider",
       }}
@@ -32,15 +36,32 @@ function Row({ entry }: { entry: Entry }) {
         ))}
       </Box>
     </Box>
+    </Reveal>
+  );
+}
+
+// Label on the left, chips on the right
+function SkillRow({ label, items }: { label: string; items: string[] }) {
+  return (
+    <Reveal>
+      <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: { xs: 1, md: 6 }, py: 4, borderBottom: "1px solid", borderColor: "divider" }}>
+        <Typography variant="h6" sx={{ color: "primary.main" }}>{label}</Typography>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+          {items.map((x) => <Chip key={x} label={x} variant="outlined" />)}
+        </Box>
+      </Box>
+    </Reveal>
   );
 }
 
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <Box sx={{ pt: { xs: 6, md: 10 } }}>
-      <Typography variant="h3" component="h2" sx={{ fontSize: { xs: "2rem", md: "3rem" }, mb: 2 }}>
-        {title}
-      </Typography>
+      <Reveal>
+        <Typography variant="h3" component="h2" sx={{ fontSize: { xs: "2rem", md: "3rem" }, mb: 2 }}>
+          {title}
+        </Typography>
+      </Reveal>
       {children}
     </Box>
   );
@@ -50,22 +71,23 @@ export default function About() {
   const { t } = useTranslation();
   const lang = useLang();
   const fd = (d: string) => formatPeriod(d, lang, t("dateNow"));
+  const photo = useReveal<HTMLImageElement>({ direction: "left", duration: 1000 });
 
   const experience: Entry[] = [
-    { date: fd("9/2024 - NOW"), title: t("ttRole"), org: t("ttLocation"), lines: [t("ttJobDes1"), t("ttJobDes2")] },
+    { date: fd("9/2024 - NOW"), title: t("ttRole"), org: t("ttLocation"), lines: [1, 2, 3, 4, 5, 6].map((n) => t(`ttJobDes${n}`)) },
     { date: fd("1/2025 - 3/2025"), title: t("tensoRole"), org: t("tensoLocation"), lines: [t("tensoJobDes1"), t("tensoJobDes2")] },
-    { date: fd("7/2024 - 8/2024"), title: t("gesherRole"), org: t("gesherLocation"), lines: [t("gesherJobDes1"), t("gesherJobDes2"), t("gesherJobDes3")] },
-    { date: fd("5/2023 - 7/2024"), title: t("mdkRole"), org: t("mdkLocation"), lines: [t("mdkJobDes1"), t("mdkJobDes2"), t("mdkJobDes3"), t("mdkJobDes4")] },
-    { date: fd("11/2021 - 12/2021"), title: t("lyymRole"), org: t("lyymLocation"), lines: [t("lyymJobDes")] },
+    { date: fd("7/2024 - 1/2025"), title: t("gesherRole"), org: t("gesherLocation"), lines: [t("gesherJobDes1"), t("gesherJobDes2"), t("gesherJobDes3")] },
+    { date: fd("5/2023 - 9/2024"), title: t("mdkRole"), org: t("mdkLocation"), lines: [t("mdkJobDes1"), t("mdkJobDes2"), t("mdkJobDes3"), t("mdkJobDes4")] },
   ];
   const education: Entry[] = [
-    { date: fd("4/2021 - 3/2025"), title: t("undergrad"), lines: [t("university"), t("universityFaculty"), t("universityDepartment")] },
+    { date: fd("4/2021 - 3/2025"), title: t("undergrad"), lines: [t("university"), t("universityFaculty"), t("universityDepartment"), t("universitySeminar")] },
     { date: fd("10/2019 - 3/2021"), title: t("languageStudy"), lines: [t("languageSchool")] },
-    { date: fd("9/2016 - 5/2019"), title: t("highSchool"), lines: [t("highSchoolName")] },
+    { date: fd("9/2016 - 6/2019"), title: t("highSchool"), lines: [t("highSchoolName")] },
   ];
+  const certs: Entry[] = certificates.map((c) => ({ date: fd(c.date), title: c.title[lang], lines: [] }));
   const languages: Entry[] = [
-    { date: t("english"), title: t("langPro"), lines: ["TOEIC L&R 910/990 (4/2021)", "TOEIC S&W 290/400 (11/2020)"] },
-    { date: t("japanese"), title: t("langPro"), lines: ["JLPT N1 (7/2024)"] },
+    { date: t("english"), title: t("langPro"), lines: [] },
+    { date: t("japanese"), title: t("langPro"), lines: [] },
     { date: t("vietnamese"), title: t("langNative"), lines: [] },
   ];
 
@@ -85,22 +107,31 @@ export default function About() {
       >
         <Box
           component="img"
-          src="/images/ava.JPG"
+          src="/images/about-photo.jpg"
           alt={t("aboutPhotoAlt")}
-          sx={{
-            width: "100%",
-            maxWidth: 440, // source photo is small, avoid blurry upscaling
-            aspectRatio: "1 / 1",
-            objectFit: "cover",
-            borderRadius: 4,
-            position: { md: "sticky" },
-            top: { md: 120 },
-          }}
+          width={900}
+          height={1125}
+          ref={photo.ref}
+          sx={[
+            {
+              width: "100%",
+              maxWidth: 520,
+              aspectRatio: "4 / 5", // matches the 900x1125 source crop
+              objectFit: "cover",
+              borderRadius: 4,
+              position: { md: "sticky" },
+              top: { md: 120 },
+            },
+            photo.sx,
+          ]}
         />
-        <Box>
-          <Typography variant="h5" sx={{ fontWeight: 300, lineHeight: 1.6, whiteSpace: "pre-line" }}>
-            {t("description")}
-          </Typography>
+        <Reveal direction="right" delay={150}>
+          {/* One paragraph per line of the locale text */}
+          {t("description").split("\n").map((para, i) => (
+            <Typography key={i} variant="h5" sx={{ fontWeight: 300, lineHeight: 1.6, mb: 2.5 }}>
+              {para}
+            </Typography>
+          ))}
           <Box
             sx={{
               display: "grid",
@@ -121,11 +152,16 @@ export default function About() {
               <Typography sx={{ fontWeight: 600 }}>{t("focusValue")}</Typography>
             </Box>
           </Box>
-        </Box>
+        </Reveal>
       </Box>
 
       <Block title={t("experienceTitle")}>{experience.map((e) => <Row key={e.date + e.title} entry={e} />)}</Block>
       <Block title={t("educationTitle")}>{education.map((e) => <Row key={e.date} entry={e} />)}</Block>
+      <Block title={t("certificatesTitle")}>{certs.map((e) => <Row key={e.date + e.title} entry={e} compact />)}</Block>
+      <Block title={t("skillsTitle")}>
+        <SkillRow label={t("toolsLabel")} items={tools} />
+        <SkillRow label={t("skillsLabel")} items={skills.map((x) => x[lang])} />
+      </Block>
       <Block title={t("languagesTitle")}>{languages.map((e) => <Row key={e.date} entry={e} />)}</Block>
       <Box sx={{ pb: 10 }} />
     </Container>

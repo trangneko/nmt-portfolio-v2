@@ -4,7 +4,6 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Works from "./pages/Works";
 import WorkDetail from "./pages/WorkDetail";
-import Contact from "./pages/Contact";
 
 export default function App() {
   return (
@@ -14,9 +13,9 @@ export default function App() {
         <Route path="about" element={<About />} />
         <Route path="works" element={<Works />} />
         <Route path="works/:slug" element={<WorkDetail />} />
-        {/* Services now lives on the landing page */}
-        <Route path="services" element={<Navigate to="/" replace />} />
-        <Route path="contact" element={<Contact />} />
+        {/* Services and Contact are sections of the landing page */}
+        <Route path="services" element={<Navigate to="/#services" replace />} />
+        <Route path="contact" element={<Navigate to="/#contact" replace />} />
       </Route>
     </Routes>
   );

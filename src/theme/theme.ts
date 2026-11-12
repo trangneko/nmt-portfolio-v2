@@ -97,6 +97,7 @@ const theme = createTheme({
           fontWeight: "400 !important",
         },
         "::selection": { background: brand.goldenOrange, color: brand.jetBlack },
+        "@media (prefers-reduced-motion: reduce)": { ".spin-on-scroll": { transform: "none !important" } },
       },
     },
     MuiButton: {

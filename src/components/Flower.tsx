@@ -6,6 +6,7 @@ interface FlowerProps {
   color?: string;
   petals?: number;
   depth?: number; // 0 = circle, higher = deeper petals
+  spin?: number; // degrees of rotation per pixel scrolled (0 = static)
   sx?: SxProps<Theme>;
 }
 
@@ -15,6 +16,7 @@ export default function Flower({
   color = "currentColor",
   petals = 12,
   depth = 0.14,
+  spin = 0.12,
   sx,
 }: FlowerProps) {
   const points: string[] = [];
@@ -30,7 +32,18 @@ export default function Flower({
       viewBox="0 0 100 100"
       aria-hidden="true"
       focusable="false"
-      sx={[{ width: size, height: size, flexShrink: 0, color }, ...(Array.isArray(sx) ? sx : [sx])]}
+      className="spin-on-scroll"
+      sx={[
+        {
+          width: size,
+          height: size,
+          flexShrink: 0,
+          color,
+          // --scroll-y is updated by the Layout while scrolling
+          transform: spin ? `rotate(calc(var(--scroll-y, 0) * ${spin}deg))` : "none",
+        },
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     >
       <polygon points={points.join(" ")} fill="currentColor" />
     </Box>

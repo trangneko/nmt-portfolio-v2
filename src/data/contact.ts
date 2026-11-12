@@ -4,5 +4,4 @@ export const EMAIL = "lucideneko@gmail.com";
 export const socialLinks = [
   { label: "LinkedIn", href: "https://linkedin.com/in/lucide" },
   { label: "GitHub", href: "https://github.com/trangneko" },
-  { label: "Behance", href: "https://www.behance.net/trangnguyen537" },
 ];

@@ -4,6 +4,7 @@ import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import ArrowOutwardRoundedIcon from "@mui/icons-material/ArrowOutwardRounded";
 import ProjectImage from "../components/ProjectImage";
+import Reveal from "../components/Reveal";
 import { findWork, works } from "../data/works";
 import { useTranslation } from "react-i18next";
 
@@ -50,10 +51,13 @@ export default function WorkDetail() {
         </Link>
       </Box>
 
-      <Typography variant="h1" component="h1" sx={{ fontSize: { xs: "2.5rem", md: "5rem" }, mt: 3, mb: 5, maxWidth: 1100 }}>
-        {work.title}
-      </Typography>
+      <Reveal>
+        <Typography variant="h1" component="h1" sx={{ fontSize: { xs: "2.5rem", md: "5rem" }, mt: 3, mb: 5, maxWidth: 1100 }}>
+          {work.title}
+        </Typography>
+      </Reveal>
 
+      <Reveal delay={100} sx={{ display: "block" }}>
       <Box
         sx={{
           display: "grid",
@@ -70,16 +74,19 @@ export default function WorkDetail() {
         {work.role && <Meta label={t("labelRole")}>{work.role}</Meta>}
         {work.tags && <Meta label={t("labelCategory")}>{work.tags.join(" / ")}</Meta>}
       </Box>
+      </Reveal>
 
-      <Box sx={{ mt: 6, "&:empty": { display: "none" } }}>
+      <Reveal direction="scale" duration={1000} sx={{ mt: 6, "&:empty": { display: "none" } }}>
         <ProjectImage src={work.image} alt={work.title} aspectRatio="16 / 9" hideOnError />
-      </Box>
+      </Reveal>
 
       <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: { xs: 4, md: 8 }, mt: 8 }}>
+        <Reveal direction="left">
         <Typography variant="h3" component="h2" sx={{ fontSize: { xs: "2rem", md: "3rem" }, color: "primary.main" }}>
           {t("aboutThisWork")}
         </Typography>
-        <Box>
+        </Reveal>
+        <Reveal direction="right" delay={120}>
           <Typography variant="h6" sx={{ fontWeight: 300, lineHeight: 1.6, mb: 4 }}>
             {work.description}
           </Typography>
@@ -101,11 +108,11 @@ export default function WorkDetail() {
               {t("visitProject")}
             </Button>
           )}
-        </Box>
+        </Reveal>
       </Box>
 
       {work.pdf && (
-        <Box sx={{ mt: 8 }}>
+        <Reveal sx={{ mt: 8 }}>
           <Typography variant="h3" component="h2" sx={{ fontSize: { xs: "2rem", md: "3rem" }, color: "primary.main", mb: 3 }}>
             {t("caseStudy")}
           </Typography>
@@ -117,9 +124,10 @@ export default function WorkDetail() {
             allowFullScreen
             sx={{ width: "100%", height: { xs: "60vh", md: "80vh" }, border: 0, borderRadius: 3, bgcolor: "background.paper" }}
           />
-        </Box>
+        </Reveal>
       )}
 
+      <Reveal>
       <Box
         sx={{
           display: "grid",
@@ -144,6 +152,7 @@ export default function WorkDetail() {
           <Typography variant="h5" sx={{ "&:hover": { color: "primary.main" } }}>{next.title}</Typography>
         </Link>
       </Box>
+      </Reveal>
     </Container>
   );
 }
