@@ -102,7 +102,7 @@ function WorkCard({ work, index }: { work: Work; index: number }) {
 const filters: { value: Category | "all"; labelKey: string }[] = [
   { value: "all", labelKey: "filterAll" },
   { value: "UI/UX", labelKey: "catUiux" },
-  { value: "Web Design", labelKey: "catWeb" },
+  { value: "Landing Page Design", labelKey: "catWeb" },
   { value: "Graphic Design", labelKey: "catGraphic" },
   { value: "Coding", labelKey: "catCoding" },
 ];

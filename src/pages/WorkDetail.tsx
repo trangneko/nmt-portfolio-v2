@@ -4,6 +4,7 @@ import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import ArrowOutwardRoundedIcon from "@mui/icons-material/ArrowOutwardRounded";
 import ProjectImage from "../components/ProjectImage";
+import CaseStudyView from "../components/CaseStudyView";
 import Reveal from "../components/Reveal";
 import { findWork, localized, works } from "../data/works";
 import { useLang } from "../hooks/useLang";
@@ -72,7 +73,7 @@ export default function WorkDetail() {
           borderColor: "divider",
         }}
       >
-        <Meta label={t("labelYear")}>{work.year}</Meta>
+        {work.year && <Meta label={t("labelYear")}>{work.year}</Meta>}
         <Meta label={t("labelPeriod")}>{text.time}</Meta>
         {text.role && <Meta label={t("labelRole")}>{text.role}</Meta>}
         {text.tags && <Meta label={t("labelCategory")}>{text.tags.join(" / ")}</Meta>}
@@ -113,6 +114,9 @@ export default function WorkDetail() {
           )}
         </Reveal>
       </Box>
+
+      {/* Long-form case study (falls back to English if there is no Japanese version) */}
+      {work.caseStudy && <CaseStudyView study={work.caseStudy[lang] ?? work.caseStudy.en} />}
 
       {work.pdf && (
         <Reveal sx={{ mt: 8 }}>

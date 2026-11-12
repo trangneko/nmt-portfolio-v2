@@ -1,4 +1,5 @@
 import type { Project } from "../types/Project";
+import { fleetCaseStudy } from "./caseStudies/fleet";
 
 export const devProjects: Project[] = [
   {
@@ -41,6 +42,27 @@ export const devProjects: Project[] = [
 ];
 export const webDesigns: Project[] = [
   {
+    slug: "fleet-management-platform",
+    tags: ["Client work", "Team Work", "UI/UX"],
+    title: "Fleet Management Platform for a Japanese Logistics Enterprise",
+    ja: {
+      title: "日系物流企業向け 車両管理プラットフォーム",
+      description:
+        "日本の物流会社のための車両管理プラットフォームです。Webポータル3種とAndroidのドライバーアプリを、ひとつのMaterial Design 3のデザインシステムでつくっています。クライアント名とブランドはNDAのため非公開です。",
+      role: "UI/UXデザイナー、フェーズ2からリードデザイナー",
+      time: "2025年6月 - 現在",
+    },
+    categories: ["UI/UX"],
+    description:
+      "A fleet management platform for a Japanese logistics company: 3 web portals and 1 Android driver app, all built on one Material Design 3 design system. Client name and branding are hidden under NDA.",
+    role: "UI/UX Designer, then Lead Designer from Phase 2",
+    time: "6/2025 - Present",
+    image: "/images/works/fleet/cover.jpg",
+    skills: ["Figma", "Material Design 3", "Claude", "Gemini", "Google Sheets", "Slack"],
+    caseStudy: fleetCaseStudy,
+  },
+
+  {
     tags: ["Personal", "Development", "Hobby", "Web Design"],
     title: "Tabipura - Your AI Travel Planner Friend",
     ja: {
@@ -61,7 +83,7 @@ export const webDesigns: Project[] = [
   {
     tags: ["Part-time work", "Development", "Web Design"],
     title: "GESHER TIMES - A Digital Magazine Service",
-    categories: ["Web Design", "Coding"],
+    categories: ["Landing Page Design", "Coding"],
     description:
       "GESHER TIMES is a digital magazine service dedicated to showcasing articles about innovation and startups in Japan, connecting them with global audiences and vice-versa, which also helps to enhance the brand presence of GESHER .inc.",
     time: "7/2024 - 8/2024",
@@ -86,7 +108,7 @@ export const webDesigns: Project[] = [
       description:
         "私の個人オンラインストアのサイトです。お店の魅力が伝わる、すっきりしたデザインを目指して、ユーザーインターフェースに力を入れました。主な機能のひとつに、ブログの投稿機能があります。2026年10月には、Claudeを使って、サイトをWordPressから自前でホスティングするコードに移行しました。",
     },
-    categories: ["Web Design", "Coding"],
+    categories: ["Landing Page Design", "Coding"],
     description:
       "My personal online store website focused on user interface, aiming for a clear design that conveys the store's appeal. One of the main features includes a blog posting function. In 10/2026, I used Claude to convert the site from WordPress to self-hosted code.",
     time: "2/2023 - 5/2023",
@@ -103,7 +125,7 @@ export const webDesigns: Project[] = [
         "学校の課題「サブスクリプションサービスのウェブサイトをデザインする」で作りました。私たちのグループは韓国、インドネシア、ベトナムからの留学生だったので、世界各国のお菓子が毎月届くスイーツボックスを考えました。誰もが好きなお菓子を通して、ほかの国の文化を紹介することが目標です。",
       role: "ワイヤーフレーム・プロトタイプ担当",
     },
-    categories: ["UI/UX", "Web Design"],
+    categories: ["UI/UX", "Landing Page Design"],
     description:
       "A school assignment with the theme of Designing a Subscription Service Website. We chose a monthly delivery of sweet boxes from various countries because all members of our group are international students from Korea, Indonesia, and Vietnam. Our goal was to introduce other countries' cultures through sweets, which are universally enjoyed.",
     role: "Wireframe, Prototype Designer",

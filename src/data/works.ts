@@ -11,16 +11,15 @@ const ascii = (s: string) =>
   s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
 // One entry per title (some projects are listed in two categories).
-// Slugs are URL-safe; Japanese-only titles fall back to "work-<n>".
 const unique: Project[] = [...webDesigns, ...devProjects, ...graphicDesigns].filter(
   (p, i, arr) => arr.findIndex((q) => q.title === p.title) === i
 );
 
 export const works: Work[] = unique.map((p, i) => {
-  const base = ascii(p.title) || "work";
   return {
     ...p,
-    slug: `${base}-${i + 1}`,
+    // Stable URL (does not change when works are added); Japanese-only titles use "work-<n>"
+    slug: p.slug ?? (ascii(p.title) || `work-${i + 1}`),
     year: p.time.match(/\d{4}/)?.[0] ?? "",
   };
 });
@@ -39,6 +38,7 @@ const tagJa: Record<string, string> = {
   Hobby: "趣味",
   "Web Design": "Webデザイン",
   "Part-time work": "アルバイト",
+  "Client work": "クライアントワーク",
   "School Work": "学校課題",
   "School work": "学校課題",
   "Team Work": "チーム制作",

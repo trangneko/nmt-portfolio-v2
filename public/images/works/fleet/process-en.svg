@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" role="img" aria-label="Design process in 5 steps: clarify, flow and wireframes, UI and copy, handoff, test and report" font-family="'Bricolage Grotesque','Hiragino Sans','Noto Sans JP','Yu Gothic',Arial,sans-serif">
+<rect width="1000" height="640" rx="28" fill="#1E4757"/>
+<line x1="100" y1="100" x2="100" y2="540" stroke="#DAD2D8" stroke-opacity="0.35" stroke-width="4" stroke-dasharray="2 12" stroke-linecap="round"/>
+<circle cx="100" cy="100" r="38" fill="#EC9A29"/>
+<text x="100" y="113" text-anchor="middle" font-size="36" font-weight="700" fill="#143642">1</text>
+<text x="170" y="96" font-size="38" font-weight="700" fill="#FFFFFF">Clarify</text>
+<text x="170" y="134" font-size="27" fill="#DAD2D8">Requirements with the PM and the client</text>
+<circle cx="100" cy="220" r="38" fill="#EC9A29"/>
+<text x="100" y="233" text-anchor="middle" font-size="36" font-weight="700" fill="#143642">2</text>
+<text x="170" y="216" font-size="38" font-weight="700" fill="#FFFFFF">Flow and wireframes</text>
+<text x="170" y="254" font-size="27" fill="#DAD2D8">Including offline, empty, and error states</text>
+<circle cx="100" cy="340" r="38" fill="#EC9A29"/>
+<text x="100" y="353" text-anchor="middle" font-size="36" font-weight="700" fill="#143642">3</text>
+<text x="170" y="336" font-size="38" font-weight="700" fill="#FFFFFF">UI and copy</text>
+<text x="170" y="374" font-size="27" fill="#DAD2D8">Design the UI and write the Japanese copy</text>
+<circle cx="100" cy="460" r="38" fill="#EC9A29"/>
+<text x="100" y="473" text-anchor="middle" font-size="36" font-weight="700" fill="#143642">4</text>
+<text x="170" y="456" font-size="38" font-weight="700" fill="#FFFFFF">Handoff</text>
+<text x="170" y="494" font-size="27" fill="#DAD2D8">To the Vietnam team, and answer their questions</text>
+<circle cx="100" cy="580" r="38" fill="#EC9A29"/>
+<text x="100" y="593" text-anchor="middle" font-size="36" font-weight="700" fill="#143642">5</text>
+<text x="170" y="576" font-size="38" font-weight="700" fill="#FFFFFF">Test and report</text>
+<text x="170" y="614" font-size="27" fill="#DAD2D8">Test the build and report issues</text>
+</svg>

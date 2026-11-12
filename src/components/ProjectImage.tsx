@@ -13,7 +13,8 @@ interface ProjectImageProps {
 
 // Shows a Dust Grey placeholder when a (remote) project image fails to load.
 export default function ProjectImage({ src, alt, aspectRatio, hideOnError = false }: ProjectImageProps) {
-  const [failed, setFailed] = useState(false);
+  const [loadFailed, setLoadFailed] = useState(false);
+  const failed = loadFailed || !src; // no cover image yet counts as failed
   if (failed && hideOnError) return null;
   if (failed) {
     return (
@@ -41,7 +42,7 @@ export default function ProjectImage({ src, alt, aspectRatio, hideOnError = fals
       src={src}
       alt={alt}
       loading="lazy"
-      onError={() => setFailed(true)}
+      onError={() => setLoadFailed(true)}
       sx={{ aspectRatio, width: "100%", height: "auto", objectFit: "cover", borderRadius: 3, display: "block" }}
     />
   );
