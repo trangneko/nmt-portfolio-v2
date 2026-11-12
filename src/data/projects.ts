@@ -1,4 +1,5 @@
 import type { Project } from "../types/Project";
+import { airweaveCaseStudy } from "./caseStudies/airweave";
 import { fleetCaseStudy } from "./caseStudies/fleet";
 
 export const devProjects: Project[] = [
@@ -61,6 +62,26 @@ export const webDesigns: Project[] = [
     skills: ["Figma", "Material Design 3", "Claude", "Gemini", "Google Sheets", "Slack"],
     caseStudy: fleetCaseStudy,
   },
+  {
+    slug: "airweave-social-ad-creatives",
+    tags: ["Client work", "Team Work", "Graphic Design"],
+    title: "Airweave Social Ad Creatives",
+    ja: {
+      title: "Airweave ソーシャル広告クリエイティブ",
+      description:
+        "プレミアム寝具2商品を、スマホでもひと目で伝わるソーシャル広告に仕上げました。見た目だけでなく、その価格に見合う理由まで伝わるように設計しています。",
+      role: "クリエイティブの企画、レイアウトデザイン、コピーと動画台本のディレクション、クライアントとのやりとり",
+      time: "2026年10月 - 2026年11月",
+    },
+    categories: ["Graphic Design"],
+    description:
+      "I turned two premium bedding products into clear, mobile-first social ads that explain why the product is worth its price, not just how it looks.",
+    role: "Creative concepting, layout design, copy and video script direction, client communication",
+    time: "10/2026 - 11/2026",
+    image: "/images/works/airweave/cover.jpg",
+    skills: ["Figma", "Meta Ads", "Video direction", "AI image generation", "Brand guideline"],
+    caseStudy: airweaveCaseStudy,
+  },
 
   {
     tags: ["Personal", "Development", "Hobby", "Web Design"],
@@ -83,7 +104,7 @@ export const webDesigns: Project[] = [
   {
     tags: ["Part-time work", "Development", "Web Design"],
     title: "GESHER TIMES - A Digital Magazine Service",
-    categories: ["Landing Page Design", "Coding"],
+    categories: ["UI/UX", "Landing Page Design", "Coding"],
     description:
       "GESHER TIMES is a digital magazine service dedicated to showcasing articles about innovation and startups in Japan, connecting them with global audiences and vice-versa, which also helps to enhance the brand presence of GESHER .inc.",
     time: "7/2024 - 8/2024",

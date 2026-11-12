@@ -10,6 +10,44 @@ function Block({ block }: { block: CaseStudyBlock }) {
   switch (block.type) {
     case "p":
       return <Typography sx={{ ...bodySx, mb: 2.5 }}>{block.text}</Typography>;
+    case "h":
+      return (
+        <Typography variant="h5" component="h3" sx={{ mt: 4, mb: 2 }}>
+          {block.text}
+        </Typography>
+      );
+    case "table":
+      // Scrolls sideways on narrow screens instead of squashing the columns
+      return (
+        <Box sx={{ overflowX: "auto", mb: 4 }}>
+          <Box component="table" sx={{ width: "100%", minWidth: 560, borderCollapse: "collapse" }}>
+            <thead>
+              <tr>
+                {block.head.map((h) => (
+                  <Box key={h} component="th" sx={{ textAlign: "left", p: 1.5, pl: 0, color: "primary.main", fontWeight: 600, borderBottom: "2px solid", borderColor: "divider" }}>
+                    {h}
+                  </Box>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, r) => (
+                <tr key={r}>
+                  {row.map((cell, c) => (
+                    <Box
+                      key={c}
+                      component="td"
+                      sx={{ verticalAlign: "top", p: 1.5, pl: 0, pr: 2, borderBottom: "1px solid", borderColor: "divider", fontWeight: 300, lineHeight: 1.7, color: c === 0 ? "text.secondary" : "text.primary" }}
+                    >
+                      {cell}
+                    </Box>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </Box>
+        </Box>
+      );
     case "labeled":
       // "Problem", "Decision", ... in the accent color; an empty text introduces the list below
       return (
@@ -27,16 +65,23 @@ function Block({ block }: { block: CaseStudyBlock }) {
           component={block.type === "list" ? "ul" : "ol"}
           sx={{ m: 0, mb: 3, pl: 3, "& li": { ...bodySx, mb: 1.5, pl: 0.5 }, "& li::marker": { color: "primary.main" } }}
         >
-          {block.items.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
+          {block.items.map((item) =>
+            typeof item === "string" ? (
+              <li key={item}>{item}</li>
+            ) : (
+              <li key={item.lead}>
+                <Box component="strong" sx={{ fontWeight: 600, mr: 0.75 }}>{item.lead}</Box>
+                {item.text}
+              </li>
+            ),
+          )}
         </Box>
       );
     case "image":
       // Placeholder slots stay hidden until the picture is added
       if (!block.src) return null;
       return (
-        <Box component="figure" sx={{ m: 0, mb: 3 }}>
+        <Box component="figure" sx={{ m: 0, mb: 3, maxWidth: block.maxWidth }}>
           <ProjectImage src={block.src} alt={block.caption} hideOnError />
           <Typography component="figcaption" variant="body2" sx={{ color: "text.secondary", mt: 1 }}>
             {block.caption}

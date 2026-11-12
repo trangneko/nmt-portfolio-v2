@@ -5,6 +5,7 @@ import { formatPeriod, useLang } from "../hooks/useLang";
 import { certificates, skills, tools } from "../data/resume";
 import Reveal from "../components/Reveal";
 import { useReveal } from "../hooks/useReveal";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
 interface Entry {
   date: string;
@@ -70,6 +71,7 @@ function Block({ title, children }: { title: string; children: React.ReactNode }
 export default function About() {
   const { t } = useTranslation();
   const lang = useLang();
+  useDocumentTitle(t("aboutTitle"));
   const fd = (d: string) => formatPeriod(d, lang, t("dateNow"));
   const photo = useReveal<HTMLImageElement>({ direction: "left", duration: 1000 });
 

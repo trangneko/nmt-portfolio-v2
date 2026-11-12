@@ -7,6 +7,7 @@ import SectionHeading from "../components/SectionHeading";
 import ProjectImage from "../components/ProjectImage";
 import { localized, works, type Work } from "../data/works";
 import { useLang } from "../hooks/useLang";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import type { Category } from "../types/Project";
 import { useReveal } from "../hooks/useReveal";
 
@@ -109,6 +110,7 @@ const filters: { value: Category | "all"; labelKey: string }[] = [
 
 export default function Works() {
   const { t } = useTranslation();
+  useDocumentTitle(t("worksTitle"));
   const [active, setActive] = useState<Category | "all">("all");
   const visible = active === "all" ? works : works.filter((w) => w.categories?.includes(active));
 

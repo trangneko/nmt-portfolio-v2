@@ -8,6 +8,7 @@ import CaseStudyView from "../components/CaseStudyView";
 import Reveal from "../components/Reveal";
 import { findWork, localized, works } from "../data/works";
 import { useLang } from "../hooks/useLang";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { useTranslation } from "react-i18next";
 
 // Small label above a value, used in the meta row
@@ -25,6 +26,8 @@ export default function WorkDetail() {
   const lang = useLang();
   const { slug } = useParams();
   const work = findWork(slug);
+  // Hook runs before the early return below
+  useDocumentTitle(work ? localized(work, lang).title : t("workNotFound"));
 
   if (!work) {
     return (

@@ -12,6 +12,7 @@ import { services } from "../data/services";
 import { EMAIL, socialLinks } from "../data/contact";
 import { brand } from "../theme/theme";
 import { useLang } from "../hooks/useLang";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 
 const featured = featuredWorks[0];
 
@@ -43,6 +44,7 @@ const sectionBody = { py: { xs: 5, md: 8 } };
 export default function Home() {
   const { t } = useTranslation();
   const lang = useLang();
+  useDocumentTitle(t("navHome"));
   const featuredText = localized(featured, lang);
   const contactRef = useRef<HTMLDivElement | null>(null);
   const [contactIn, setContactIn] = useState(false);

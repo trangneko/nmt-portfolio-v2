@@ -12,12 +12,17 @@ export interface ProjectJa {
     tags?: string[];
 }
 
-// Long-form case study shown on the work detail page
+// Long-form case study shown on the work detail page.
+// A list item is plain text, or a bold lead-in plus text ("Problem. The map was wrong.").
+export type CaseStudyItem = string | { lead: string; text: string };
+
 export type CaseStudyBlock =
   | { type: "p"; text: string }
-  | { type: "list" | "numbered"; items: string[] }
+  | { type: "h"; text: string } // small sub-heading inside a section
+  | { type: "list" | "numbered"; items: CaseStudyItem[] }
   | { type: "labeled"; label: string; text: string } // "Problem.", "Decision.", ...
-  | { type: "image"; src?: string; caption: string }; // skipped until `src` is set
+  | { type: "table"; head: string[]; rows: string[][] }
+  | { type: "image"; src?: string; caption: string; maxWidth?: number }; // skipped until `src` is set
 
 export interface CaseStudy {
   note?: string; // e.g. the NDA notice
