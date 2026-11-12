@@ -1,0 +1,57 @@
+{
+    "welcome": "Welcome to My Playground",
+    "hello": "Hello! I’m Trang. You can also call me Lucide.",
+    "hello2": "I blend creativity and code to bring ideas to life.",
+    "helloDes": "Explore my work and get to know me.",
+
+    "description": "I’m a first-year professional and a recent graduate of Digital Hollywood University in Tokyo, where I specialized in web design and UI/UX design. My passion for the creative field began in high school, and during university, I developed a strong interest in web development as well.\n Outside of work, I enjoy photography, playing rhythm games, and exploring retail trends. I also run a small business as a personal project, which allows me to continuously learn and apply practical skills. \nI’m excited to keep growing as a designer and developer, especially in the fields of web design, web applications, and mobile app development.",
+
+    "undergrad": "UNDERGRADUATE",
+    "university": "Digital Hollywood University (Tokyo)",
+    "universityFaculty": "Faculty of Digital Communication",
+    "universityDepartment": "Department of Digital Content",
+    "languageStudy": "JAPANESE LANGUAGE STUDY",
+    "languageSchool": "OLJ Language Academy (Tokyo)",
+    "highSchool": "HIGH SCHOOL DIPLOMA",
+    "highSchoolName": "Foreign Language Specialized School (Hanoi)",
+
+    "jobDes": "What I did:",
+    "ttRole": "UI/UX DESIGNER INTERN until Feb 2025 & FULL-TIME from April 2025",
+    "ttLocation": "@ Tokyo Techies Inc.",
+    "ttJobDes1": "Kotae (AI Chatbot Service): Enhanced UX design to improve user interaction and satisfaction. Collaborated closely with the PM and other designers to create wireframes and UI for new features. Conducted usability testing and user research to support the redesign of Kotae v3, a major UI overhaul launched in April 2025.",
+    "ttJobDes2": "Social Media: Designed social media posts to effectively promote Kotae and other company services, helping to drive produ awareness and engagement.",
+    "tensoRole": "UX RESEARCHER INTERN",
+    "tensoLocation": "@ BEENOS Group, tenso Inc.",
+    "tensoJobDes1": "Created proposals and wireframes for new AI-powered features on the Buyee website, aiming to enhance user experience and functionality.",
+    "tensoJobDes2": "Produced UX documentation and user flows to support design decisions and cross-team communication.",
+    "gesherRole": "UI/UX DESIGNER INTERN",
+    "gesherLocation": "@ GESHER Inc.",
+    "gesherJobDes1": "Corporate Website: Led the brainstorming, wireframing, and UI design for the company’s corporate website, ensuring a user-centric approach that aligns with brand goals.",
+    "gesherJobDes2": "GESHER TIMES - a Digital Magazine Project: Digital Magazine: Designed and refined the UI for a digital magazine platform, helped developing the front-end with a seamless and engaging user experience.",
+    "gesherJobDes3": "Social Media: Created visually compelling social media ads, contributing to brand awareness and user engagement.",
+    "mdkRole": "PART-TIME WEB DEVELOPER",
+    "mdkLocation": "@ Mandarake Inc.",
+    "mdkJobDes1": "Advertising & Branding: Designed e-commerce website advertisements and banners, aligning visuals with brand identity to attract target audiences.",
+    "mdkJobDes2": "Web Design & Development: Created and renewed web designs, including wireframes, to improve user experience and update site aesthetics.",
+    "mdkJobDes3": "Front-End Development: Contributed to front-end engineering tasks, ensuring responsive and accessible interfaces.",
+    "mdkJobDes4": "Mobile App Development: Assisted in developing an internal Android mobile app, supporting streamlined workflows and user-friendly navigation",
+    "lyymRole": "PART-TIME GRAPHIC DESGINER",
+    "lyymLocation": "@ 株式会社LYYM BEAUTY",
+    "lyymJobDes": "Advertisements, Facebook posts, and printed materials design.",
+
+    "english": "ENGLISH",
+    "japanese": "JAPANESE",
+    "vietnamese": "VIETNAMESE",
+    "langPro": "Professional Working Proficiency",
+    "langNative": "Native Proficiency",
+
+    "devPj": "Development Projects",
+    "webPj": "Web Design Projects",
+    "graphicPj": "Graphic/Product Design Projects",
+
+    "resume": "RESUME",
+    "resumeDownloadLink": "https://drive.google.com/file/d/12Pvg5-943Zfm2zdtH86kEIp3qTOBitO3/view?usp=sharing",
+    "downloadButton": "Download File",
+    "resumeViewLink": "https://drive.google.com/file/d/12Pvg5-943Zfm2zdtH86kEIp3qTOBitO3/preview"
+   }
+  
