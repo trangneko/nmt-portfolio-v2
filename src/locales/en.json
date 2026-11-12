@@ -102,5 +102,11 @@
     "skillsTitle": "Skills and tools",
     "toolsLabel": "Tools and technologies",
     "skillsLabel": "Skills",
-    "navServices": "Services"
+    "navServices": "Services",
+    "filterAll": "All",
+    "catUiux": "UI/UX",
+    "catWeb": "Web Design",
+    "catGraphic": "Graphic Design",
+    "catCoding": "Coding",
+    "filterEmpty": "No works in this category yet."
 }

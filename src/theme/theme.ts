@@ -81,7 +81,7 @@ const theme = createTheme({
         body: { overflowX: "hidden" },
         // Japanese typography. English headings use tight line-height and negative
         // letter-spacing, which crush kana and kanji, so loosen them under lang="ja".
-        ":lang(ja)": { "word-break": "auto-phrase", "line-break": "strict" },
+        ":lang(ja)": { wordBreak: "auto-phrase", lineBreak: "strict" },
         ":lang(ja) .MuiTypography-h1, :lang(ja) .MuiTypography-h2, :lang(ja) .MuiTypography-h3, :lang(ja) .MuiTypography-h4": {
           lineHeight: 1.4,
           letterSpacing: "0.02em",

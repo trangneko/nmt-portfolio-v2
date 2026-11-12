@@ -7,7 +7,7 @@ import Flower from "../components/Flower";
 import ProjectImage from "../components/ProjectImage";
 import Reveal from "../components/Reveal";
 import SectionHeading from "../components/SectionHeading";
-import { featuredWorks } from "../data/works";
+import { featuredWorks, localized } from "../data/works";
 import { services } from "../data/services";
 import { EMAIL, socialLinks } from "../data/contact";
 import { brand } from "../theme/theme";
@@ -43,6 +43,7 @@ const sectionBody = { py: { xs: 5, md: 8 } };
 export default function Home() {
   const { t } = useTranslation();
   const lang = useLang();
+  const featuredText = localized(featured, lang);
   const contactRef = useRef<HTMLDivElement | null>(null);
   const [contactIn, setContactIn] = useState(false);
 
@@ -93,12 +94,12 @@ export default function Home() {
 
         <Reveal direction="right" delay={200}>
         <Box component={RouterLink} to={`/works/${featured.slug}`} sx={{ color: "inherit", textDecoration: "none", display: "block" }}>
-          <ProjectImage src={featured.image} alt="" aspectRatio="3 / 2" />
+          <ProjectImage src={featured.image} alt="" aspectRatio="16 / 9" />
           <Box sx={{ display: "grid", gridTemplateColumns: "1fr auto", gap: 1, mt: 2, color: "text.secondary" }}>
             <Typography variant="body2">{t("featuredProject")}</Typography>
             <Typography variant="body2">{featured.year}</Typography>
-            <Typography variant="h6" sx={{ color: "text.primary" }}>{featured.title}</Typography>
-            <Typography variant="body2">{featured.tags?.[featured.tags.length - 1]}</Typography>
+            <Typography variant="h6" sx={{ color: "text.primary" }}>{featuredText.title}</Typography>
+            <Typography variant="body2">{featuredText.tags?.[featuredText.tags.length - 1]}</Typography>
           </Box>
         </Box>
         </Reveal>
@@ -170,7 +171,9 @@ export default function Home() {
       <SectionHeading title={t("worksTitle")} statement={t("worksTeaser")} />
       <Box sx={sectionBody}>
         <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)" }, gap: 4 }}>
-          {featuredWorks.map((w, i) => (
+          {featuredWorks.map((w, i) => {
+            const text = localized(w, lang);
+            return (
             <Reveal key={w.slug} delay={i * 150}>
             <Box
               component={RouterLink}
@@ -185,16 +188,17 @@ export default function Home() {
               }}
             >
               <Box sx={{ overflow: "hidden", borderRadius: 3 }}>
-                <ProjectImage src={w.image} alt="" aspectRatio="4 / 3" />
+                <ProjectImage src={w.image} alt="" aspectRatio="16 / 9" />
               </Box>
               <Box sx={{ display: "flex", justifyContent: "space-between", gap: 2, mt: 2, color: "text.secondary" }}>
-                <Typography variant="body2">{w.tags?.[w.tags.length - 1]}</Typography>
+                <Typography variant="body2">{text.tags?.[text.tags.length - 1]}</Typography>
                 <Typography variant="body2" sx={{ color: "primary.main" }}>{w.year}</Typography>
               </Box>
-              <Typography variant="h5" component="h3" sx={{ mt: 0.5, transition: "color .2s" }}>{w.title}</Typography>
+              <Typography variant="h5" component="h3" sx={{ mt: 0.5, transition: "color .2s" }}>{text.title}</Typography>
             </Box>
             </Reveal>
-          ))}
+            );
+          })}
         </Box>
         <Box sx={{ mt: 6 }}>
           <ArrowLink to="/works" label={t("seeAllWorks")} />

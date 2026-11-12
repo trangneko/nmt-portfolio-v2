@@ -5,13 +5,14 @@ import ImageNotSupportedRoundedIcon from "@mui/icons-material/ImageNotSupportedR
 interface ProjectImageProps {
   src: string;
   alt: string;
+  // Leave out to show the whole image at its own (landscape) ratio, with no cropping
   aspectRatio?: string;
   // Render nothing instead of a placeholder (used on the detail page)
   hideOnError?: boolean;
 }
 
 // Shows a Dust Grey placeholder when a (remote) project image fails to load.
-export default function ProjectImage({ src, alt, aspectRatio = "4 / 3", hideOnError = false }: ProjectImageProps) {
+export default function ProjectImage({ src, alt, aspectRatio, hideOnError = false }: ProjectImageProps) {
   const [failed, setFailed] = useState(false);
   if (failed && hideOnError) return null;
   if (failed) {
@@ -20,7 +21,7 @@ export default function ProjectImage({ src, alt, aspectRatio = "4 / 3", hideOnEr
         role="img"
         aria-label={alt}
         sx={{
-          aspectRatio,
+          aspectRatio: aspectRatio ?? "16 / 9",
           width: "100%",
           display: "flex",
           alignItems: "center",
@@ -41,7 +42,7 @@ export default function ProjectImage({ src, alt, aspectRatio = "4 / 3", hideOnEr
       alt={alt}
       loading="lazy"
       onError={() => setFailed(true)}
-      sx={{ aspectRatio, width: "100%", objectFit: "cover", borderRadius: 3, display: "block" }}
+      sx={{ aspectRatio, width: "100%", height: "auto", objectFit: "cover", borderRadius: 3, display: "block" }}
     />
   );
 }

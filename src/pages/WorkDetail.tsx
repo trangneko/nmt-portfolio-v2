@@ -5,7 +5,8 @@ import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import ArrowOutwardRoundedIcon from "@mui/icons-material/ArrowOutwardRounded";
 import ProjectImage from "../components/ProjectImage";
 import Reveal from "../components/Reveal";
-import { findWork, works } from "../data/works";
+import { findWork, localized, works } from "../data/works";
+import { useLang } from "../hooks/useLang";
 import { useTranslation } from "react-i18next";
 
 // Small label above a value, used in the meta row
@@ -20,6 +21,7 @@ function Meta({ label, children }: { label: string; children: React.ReactNode })
 
 export default function WorkDetail() {
   const { t } = useTranslation();
+  const lang = useLang();
   const { slug } = useParams();
   const work = findWork(slug);
 
@@ -34,6 +36,7 @@ export default function WorkDetail() {
     );
   }
 
+  const text = localized(work, lang);
   const i = works.indexOf(work);
   const prev = works[(i - 1 + works.length) % works.length];
   const next = works[(i + 1) % works.length];
@@ -53,7 +56,7 @@ export default function WorkDetail() {
 
       <Reveal>
         <Typography variant="h1" component="h1" sx={{ fontSize: { xs: "2.5rem", md: "5rem" }, mt: 3, mb: 5, maxWidth: 1100 }}>
-          {work.title}
+          {text.title}
         </Typography>
       </Reveal>
 
@@ -70,14 +73,14 @@ export default function WorkDetail() {
         }}
       >
         <Meta label={t("labelYear")}>{work.year}</Meta>
-        <Meta label={t("labelPeriod")}>{work.time}</Meta>
-        {work.role && <Meta label={t("labelRole")}>{work.role}</Meta>}
-        {work.tags && <Meta label={t("labelCategory")}>{work.tags.join(" / ")}</Meta>}
+        <Meta label={t("labelPeriod")}>{text.time}</Meta>
+        {text.role && <Meta label={t("labelRole")}>{text.role}</Meta>}
+        {text.tags && <Meta label={t("labelCategory")}>{text.tags.join(" / ")}</Meta>}
       </Box>
       </Reveal>
 
       <Reveal direction="scale" duration={1000} sx={{ mt: 6, "&:empty": { display: "none" } }}>
-        <ProjectImage src={work.image} alt={work.title} aspectRatio="16 / 9" hideOnError />
+        <ProjectImage src={work.image} alt={text.title} hideOnError />
       </Reveal>
 
       <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" }, gap: { xs: 4, md: 8 }, mt: 8 }}>
@@ -88,7 +91,7 @@ export default function WorkDetail() {
         </Reveal>
         <Reveal direction="right" delay={120}>
           <Typography variant="h6" sx={{ fontWeight: 300, lineHeight: 1.6, mb: 4 }}>
-            {work.description}
+            {text.description}
           </Typography>
           <Typography variant="body2" sx={{ color: "text.secondary", mb: 1.5 }}>{t("skillsAndTools")}</Typography>
           <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 4 }}>
@@ -118,7 +121,7 @@ export default function WorkDetail() {
           </Typography>
           <Box
             component="iframe"
-            title={t("caseStudyTitle", { title: work.title })}
+            title={t("caseStudyTitle", { title: text.title })}
             src={work.pdf}
             loading="lazy"
             allowFullScreen
@@ -143,13 +146,13 @@ export default function WorkDetail() {
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
             <ArrowBackRoundedIcon fontSize="inherit" /> {t("previous")}
           </Typography>
-          <Typography variant="h5" sx={{ "&:hover": { color: "primary.main" } }}>{prev.title}</Typography>
+          <Typography variant="h5" sx={{ "&:hover": { color: "primary.main" } }}>{localized(prev, lang).title}</Typography>
         </Link>
         <Link component={RouterLink} to={`/works/${next.slug}`} underline="none" sx={{ color: "inherit", textAlign: "right" }}>
           <Typography variant="body2" sx={{ color: "text.secondary" }}>
             {t("next")} <ArrowForwardRoundedIcon fontSize="inherit" />
           </Typography>
-          <Typography variant="h5" sx={{ "&:hover": { color: "primary.main" } }}>{next.title}</Typography>
+          <Typography variant="h5" sx={{ "&:hover": { color: "primary.main" } }}>{localized(next, lang).title}</Typography>
         </Link>
       </Box>
       </Reveal>

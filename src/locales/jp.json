@@ -102,5 +102,11 @@
     "skillsTitle": "スキルとツール",
     "toolsLabel": "ツール・技術",
     "skillsLabel": "スキル",
-    "navServices": "できること"
+    "navServices": "できること",
+    "filterAll": "すべて",
+    "catUiux": "UI/UX",
+    "catWeb": "Webデザイン",
+    "catGraphic": "グラフィックデザイン",
+    "catCoding": "コーディング",
+    "filterEmpty": "このカテゴリーの作品はまだありません。"
 }
