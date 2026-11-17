@@ -3,6 +3,7 @@ import { airweaveCaseStudy } from "./caseStudies/airweave";
 import { fleetCaseStudy } from "./caseStudies/fleet";
 import { warehouseCaseStudy } from "./caseStudies/warehouse";
 import { elsaCaseStudy } from "./caseStudies/elsa";
+import { kotaeCaseStudy } from "./caseStudies/kotae";
 
 export const devProjects: Project[] = [
   {
@@ -132,6 +133,26 @@ export const webDesigns: Project[] = [
       "Stakeholder Collaboration",
     ],
     caseStudy: elsaCaseStudy,
+  },
+  {
+    slug: "kotae-marketing-materials",
+    tags: ["In-house work", "Graphic Design"],
+    title: "Kotae AI Chatbot: Flyers, Posters & Digital Ads",
+    ja: {
+      title: "Kotae AIチャットボット：チラシ・ポスター・デジタル広告",
+      description:
+        "Tokyo Techiesが開発したAIチャットボット「Kotae」のマーケティング素材です。2024年に社内のニーズから生まれたプロダクトで、リブランディング後、広告を日本市場に絞る方針になったため、展示会向けのチラシ、ポスター、デジタル広告を数多く制作しました。当時のブランドカラーである紫、オレンジ、緑で統一しています。",
+      role: "グラフィックデザイン、コピーライティング（AI活用）、印刷の発注",
+    },
+    categories: ["Graphic Design"],
+    description:
+      "Marketing materials for Kotae, an AI chatbot by Tokyo Techies that started as an internal need in 2024. After a rebrand, the company aimed its ads at the Japanese market, so I designed many flyers (chirashi) for exhibitions, posters and digital ads in the brand colors of purple, orange and green.",
+    role: "Graphic design, copywriting (with AI), print ordering",
+    time: "2025 - 2026",
+    image: "/images/works/kotae/cover.jpg",
+    url: "https://kotae.ai",
+    skills: ["Figma", "AI-assisted copywriting", "Flyer design", "Poster design", "Digital ads", "Print ordering (Raksul)", "Japanese typography"],
+    caseStudy: kotaeCaseStudy,
   },
 
   {

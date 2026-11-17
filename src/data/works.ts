@@ -46,6 +46,7 @@ const tagJa: Record<string, string> = {
   "Graphic Design": "グラフィックデザイン",
   "Landing Page Design": "ランディングページデザイン",
   "Mobile App Design": "モバイルアプリデザイン",
+  "In-house work": "社内制作",
   "Icon Design": "アイコンデザイン",
   Typography: "タイポグラフィ",
 };

@@ -1,9 +1,57 @@
+import { lazy, Suspense, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import type { CaseStudy, CaseStudyBlock } from "../types/Project";
 import ProjectImage from "./ProjectImage";
 import Reveal from "./Reveal";
 
+// The album viewer is only downloaded when someone opens a picture
+const ImageLightbox = lazy(() => import("./ImageLightbox"));
+
 const bodySx = { fontWeight: 300, lineHeight: 1.8, fontSize: { xs: "1.05rem", md: "1.15rem" } };
+
+
+// Grid of pictures; each one opens in a full-screen album
+function Gallery({ block }: { block: Extract<CaseStudyBlock, { type: "gallery" }> }) {
+  const [open, setOpen] = useState(-1);
+  const [used, setUsed] = useState(false); // keep it mounted after the first open so it can fade out
+  return (
+    <>
+      <Box sx={{ display: "grid", gridTemplateColumns: { xs: "1fr 1fr", md: `repeat(${block.cols ?? 3}, 1fr)` }, gap: 2, mb: 4 }}>
+        {block.items.map((it, i) => (
+          <Box
+            key={it.src}
+            component="button"
+            type="button"
+            onClick={() => { setUsed(true); setOpen(i); }}
+            aria-label={it.caption}
+            sx={{
+              display: "block",
+              p: 0,
+              border: 0,
+              bgcolor: "transparent",
+              textAlign: "left",
+              font: "inherit",
+              color: "inherit",
+              cursor: "zoom-in",
+              "&:hover img": { transform: "scale(1.02)" },
+              "&:focus-visible": { outline: "2px solid", outlineColor: "primary.main", outlineOffset: 4 },
+            }}
+          >
+            <Box sx={{ overflow: "hidden", borderRadius: 2, border: "1px solid", borderColor: "divider", bgcolor: "#FFFFFF" }}>
+              <Box component="img" src={it.src} alt="" loading="lazy" sx={{ display: "block", width: "100%", height: "auto", transition: "transform .3s" }} />
+            </Box>
+            <Typography variant="body2" sx={{ color: "text.secondary", mt: 1 }}>{it.caption}</Typography>
+          </Box>
+        ))}
+      </Box>
+      {used && (
+        <Suspense fallback={null}>
+          <ImageLightbox items={block.items} index={open} onClose={() => setOpen(-1)} />
+        </Suspense>
+      )}
+    </>
+  );
+}
 
 // One content block inside a section
 function Block({ block }: { block: CaseStudyBlock }) {
@@ -77,6 +125,8 @@ function Block({ block }: { block: CaseStudyBlock }) {
           )}
         </Box>
       );
+    case "gallery":
+      return <Gallery block={block} />;
     case "image":
       // Placeholder slots stay hidden until the picture is added
       if (!block.src) return null;

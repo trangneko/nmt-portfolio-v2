@@ -22,7 +22,8 @@ export type CaseStudyBlock =
   | { type: "list" | "numbered"; items: CaseStudyItem[] }
   | { type: "labeled"; label: string; text: string } // "Problem.", "Decision.", ...
   | { type: "table"; head: string[]; rows: string[][] }
-  | { type: "image"; src?: string; caption: string; maxWidth?: number }; // skipped until `src` is set
+  | { type: "image"; src?: string; caption: string; maxWidth?: number } // skipped until `src` is set
+  | { type: "gallery"; cols?: 2 | 3; items: { src: string; caption: string }[] }; // grid of pictures, each opens full size
 
 export interface CaseStudy {
   note?: string; // e.g. the NDA notice
